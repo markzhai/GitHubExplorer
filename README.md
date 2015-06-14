@@ -20,6 +20,8 @@ built on top of [API v3](http://developer.github.com/).
 It also uses many other open source libraries such as:
 
 * [RoboGuice 3](https://github.com/roboguice/roboguice)
+* [Volley](https://github.com/mcxiaoke/android-volley)
+* [jsoup](https://github.com/jhy/jsoup/)
 
 Google official libraries like:
 * [Google Design Support Library](https://developer.android.com/tools/support-library/features.html#design)
