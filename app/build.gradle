@@ -23,8 +23,15 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:22.2.0'
+    compile 'com.android.support:design:22.2.0'
+    compile 'com.android.support:cardview-v7:22.2.0'
+    compile 'com.android.support:recyclerview-v7:22.2.0'
+
     compile 'com.mcxiaoke.volley:library:1.0.+'
     compile 'org.jsoup:jsoup:1.8.2'
+
     compile 'org.roboguice:roboguice:3.0.1'
     apt 'org.roboguice:roboblender:3.+'
+
+    compile 'org.eclipse.mylyn.github:org.eclipse.egit.github.core:3.7.0.201502260915-r'
 }

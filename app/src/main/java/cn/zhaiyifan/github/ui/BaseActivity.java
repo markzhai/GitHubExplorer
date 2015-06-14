@@ -1,9 +1,17 @@
 package cn.zhaiyifan.github.ui;
 
+import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+
+import cn.zhaiyifan.github.R;
 import roboguice.activity.RoboActionBarActivity;
 
-/**
- * Created by markzhai on 2015/6/14.
- */
 public class BaseActivity extends RoboActionBarActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+    }
 }
