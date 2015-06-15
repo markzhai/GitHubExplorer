@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import cn.zhaiyifan.github.R;
 
-public class ListFragment extends Fragment {
+public class TrendingListFragment extends Fragment {
 
     private RecyclerView mRecyclerView;
 

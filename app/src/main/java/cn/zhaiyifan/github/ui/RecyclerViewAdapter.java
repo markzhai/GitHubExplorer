@@ -14,9 +14,6 @@ import android.view.ViewGroup;
 
 import cn.zhaiyifan.github.R;
 
-/**
- * Created by markzhai on 2015/6/14.
- */
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
     private Context mContext;
 
@@ -26,8 +23,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public RecyclerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view =
-                LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_card_main, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_card_main, parent, false);
         return new ViewHolder(view);
     }
 

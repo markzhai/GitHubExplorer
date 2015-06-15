@@ -15,7 +15,7 @@ public class DetailActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-        collapsingToolbar.setTitle("我的课程");
+        collapsingToolbar.setTitle(getResources().getString(R.string.repositories));
     }
 
     public void checkin(View view) {

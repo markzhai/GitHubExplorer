@@ -150,10 +150,10 @@ public class MainActivity extends BaseActivity {
         mTabLayout.addTab(mTabLayout.newTab().setText(titles.get(1)));
         mTabLayout.addTab(mTabLayout.newTab().setText(titles.get(2)));
         List<Fragment> fragments = new ArrayList<>();
-        fragments.add(new ListFragment());
-        fragments.add(new ListFragment());
-        fragments.add(new ListFragment());
-        FragmentAdapter adapter = new FragmentAdapter(getSupportFragmentManager(), fragments, titles);
+        fragments.add(new TrendingListFragment());
+        fragments.add(new TrendingListFragment());
+        fragments.add(new TrendingListFragment());
+        PagerFragmentAdapter adapter = new PagerFragmentAdapter(getSupportFragmentManager(), fragments, titles);
         mViewPager.setAdapter(adapter);
         mTabLayout.setupWithViewPager(mViewPager);
         mTabLayout.setTabsFromPagerAdapter(adapter);
