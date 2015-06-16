@@ -4,17 +4,15 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.view.ViewPager;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -31,14 +29,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.zhaiyifan.github.R;
+import cn.zhaiyifan.github.ui.base.TabPagerActivity;
 import roboguice.inject.ContentView;
 import roboguice.inject.InjectView;
 
 @ContentView(R.layout.activity_main)
-public class MainActivity extends BaseActivity {
-
-    @InjectView(R.id.hello)
-    TextView textView;
+public class MainActivity extends TabPagerActivity {
 
     @InjectView(R.id.nv_main_navigation)
     NavigationView navigationView;
@@ -49,18 +45,17 @@ public class MainActivity extends BaseActivity {
     @InjectView(R.id.fab)
     FloatingActionButton fab;
 
-    @InjectView(R.id.tabs)
-    TabLayout mTabLayout;
-
-    @InjectView(R.id.viewpager)
-    ViewPager mViewPager;
+    @Override
+    protected PagerAdapter createAdapter() {
+        return null;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setupDrawerContent(navigationView);
-        setupViewPager();
+        initDrawerContent(navigationView);
+        initViewPager();
 
         final ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -98,7 +93,6 @@ public class MainActivity extends BaseActivity {
                             String linkHref = languageElement.getElementsByTag("a").attr("href");
                             String linkText = languageElement.text();
                             Log.d("TAG", languageElement.toString());
-                            textView.setText(linkText);
                         }
                     }
                 }, new Response.ErrorListener() {
@@ -129,7 +123,7 @@ public class MainActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void setupDrawerContent(NavigationView navigationView) {
+    private void initDrawerContent(NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
@@ -141,7 +135,7 @@ public class MainActivity extends BaseActivity {
                 });
     }
 
-    private void setupViewPager() {
+    private void initViewPager() {
         List<String> titles = new ArrayList<>();
         titles.add("Page One");
         titles.add("Page Two");

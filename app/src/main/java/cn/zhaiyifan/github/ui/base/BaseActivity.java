@@ -1,4 +1,4 @@
-package cn.zhaiyifan.github.ui;
+package cn.zhaiyifan.github.ui.base;
 
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;

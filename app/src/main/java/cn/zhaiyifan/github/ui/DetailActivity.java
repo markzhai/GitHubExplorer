@@ -6,6 +6,7 @@ import android.support.design.widget.Snackbar;
 import android.view.View;
 
 import cn.zhaiyifan.github.R;
+import cn.zhaiyifan.github.ui.base.BaseActivity;
 import roboguice.inject.ContentView;
 
 @ContentView(R.layout.activity_detail)

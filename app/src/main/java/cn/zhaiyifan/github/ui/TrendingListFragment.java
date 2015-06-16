@@ -16,8 +16,7 @@ public class TrendingListFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mRecyclerView =
-                (RecyclerView) inflater.inflate(R.layout.list_fragment, container, false);
+        mRecyclerView = (RecyclerView) inflater.inflate(R.layout.list_fragment, container, false);
         return mRecyclerView;
     }
 
