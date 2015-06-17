@@ -5,4 +5,6 @@
     <color name="colorPrimaryDark">#B83c30</color>
     <color name="divider">#644d4d4d</color>
     <color name="titleTextColor">@android:color/white</color>
+
+    <color name="tab_indicator">@android:color/white</color>
 </resources>

@@ -3,13 +3,13 @@ package cn.zhaiyifan.github.ui.base;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.TabHost;
 
 import com.github.kevinsawicki.wishlist.ViewUtils;
 
 import cn.zhaiyifan.github.R;
+import cn.zhaiyifan.github.ui.widget.ViewPager;
 import roboguice.inject.InjectView;
 
 /**
@@ -29,7 +29,7 @@ public abstract class TabPagerActivity<V extends PagerAdapter & FragmentProvider
     /**
      * Pager adapter
      */
-    protected V adapter;
+    protected V mPagerAdapter;
 
     @Override
     public void onPageSelected(final int position) {
@@ -58,7 +58,7 @@ public abstract class TabPagerActivity<V extends PagerAdapter & FragmentProvider
      * @return title
      */
     protected String getTitle(final int position) {
-        return adapter.getPageTitle(position).toString();
+        return mPagerAdapter.getPageTitle(position).toString();
     }
 
     /**
@@ -88,35 +88,38 @@ public abstract class TabPagerActivity<V extends PagerAdapter & FragmentProvider
      * current item of the pager has already been updated to the given position
      * <p/>
      * Sub-classes may override this method
-     *
-     * @param position
      */
     protected void setCurrentItem(final int position) {
         // Intentionally left blank
     }
 
     private void updateCurrentItem(final int newPosition) {
-        //if (newPosition > -1 && newPosition < adapter.getCount()) {
-        ////    mViewPager.setItem(newPosition);
-        //    setCurrentItem(newPosition);
-        //}
+        if (newPosition > -1 && newPosition < mPagerAdapter.getCount()) {
+            mViewPager.setItem(newPosition);
+            setCurrentItem(newPosition);
+        }
     }
 
     private void createPager() {
-        adapter = createAdapter();
+        mPagerAdapter = createAdapter();
         invalidateOptionsMenu();
-        mViewPager.setAdapter(adapter);
+        mViewPager.setAdapter(mPagerAdapter);
     }
 
     public void updateTabs() {
-        //mTabLayout.setViewPager(pager);
+        mTabLayout.setupWithViewPager(mViewPager);
+        mTabLayout.setTabsFromPagerAdapter(mPagerAdapter);
     }
 
     /**
      * Configure tabs and pager
      */
     protected void configureTabPager() {
-        if (adapter == null) {
+        mViewPager.addOnPageChangeListener(this);
+        int tabTextColor = getResources().getColor(R.color.titleTextColor);
+        mTabLayout.setTabTextColors(tabTextColor, tabTextColor);
+
+        if (mPagerAdapter == null) {
             createPager();
             updateTabs();
         }
@@ -126,19 +129,11 @@ public abstract class TabPagerActivity<V extends PagerAdapter & FragmentProvider
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //setSupportActionBar((android.support.v7.widget.Toolbar) findViewById(R.id.toolbar));
-
-        // On Lollipop, the action bar shadow is provided by default, so have to remove it explicitly
-        //getSupportActionBar().setElevation(0);
-
-       // mViewPager.setOnPageChangeListener(this);
-        //mTabLayout.setCustomTabView(R.layout.tab, R.id.tv_tab);
-        //mTabLayout.setSelectedIndicatorColors(getResources().getColor(android.R.color.white));
-       // mTabLayout.setDividerColors(0);
+        configureTabPager();
     }
 
     @Override
     protected FragmentProvider getProvider() {
-        return adapter;
+        return mPagerAdapter;
     }
 }

@@ -47,7 +47,16 @@ public class MainActivity extends TabPagerActivity {
 
     @Override
     protected PagerAdapter createAdapter() {
-        return null;
+        List<String> titles = new ArrayList<>();
+        titles.add("Page One");
+        titles.add("Page Two");
+        titles.add("Page Three");
+        List<Fragment> fragments = new ArrayList<>();
+        fragments.add(new TrendingListFragment());
+        fragments.add(new TrendingListFragment());
+        fragments.add(new TrendingListFragment());
+
+        return new PagerFragmentAdapter(getSupportFragmentManager(), fragments, titles);
     }
 
     @Override
@@ -55,7 +64,6 @@ public class MainActivity extends TabPagerActivity {
         super.onCreate(savedInstanceState);
 
         initDrawerContent(navigationView);
-        initViewPager();
 
         final ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -133,23 +141,5 @@ public class MainActivity extends TabPagerActivity {
                         return true;
                     }
                 });
-    }
-
-    private void initViewPager() {
-        List<String> titles = new ArrayList<>();
-        titles.add("Page One");
-        titles.add("Page Two");
-        titles.add("Page Three");
-        mTabLayout.addTab(mTabLayout.newTab().setText(titles.get(0)));
-        mTabLayout.addTab(mTabLayout.newTab().setText(titles.get(1)));
-        mTabLayout.addTab(mTabLayout.newTab().setText(titles.get(2)));
-        List<Fragment> fragments = new ArrayList<>();
-        fragments.add(new TrendingListFragment());
-        fragments.add(new TrendingListFragment());
-        fragments.add(new TrendingListFragment());
-        PagerFragmentAdapter adapter = new PagerFragmentAdapter(getSupportFragmentManager(), fragments, titles);
-        mViewPager.setAdapter(adapter);
-        mTabLayout.setupWithViewPager(mViewPager);
-        mTabLayout.setTabsFromPagerAdapter(adapter);
     }
 }
